@@ -1,0 +1,30 @@
+1.. Find the second Heightest Salary 
+
+SELECT MAx(Salary)
+FROM employees 
+WHERE salary < (SELECT MAX(salary) FROM employees )
+
+2. Finth the nth hegihest salary 
+
+SELECT salary 
+FROM employees 
+ORDER BY salary DESC 
+LIMIT 1 OFFSET 2;
+
+3. Using ROW_NUMBER()
+
+SELECT name, salary ,
+ROW_NUMBER() OVER (ORDER BY salary DESC) AS rankno
+FROM emp
+
+4. Using Rank()
+
+SELECT name, salary , RANK() OVER (ORDER BY salary DESC ) AS rankno FROM emp;
+
+5. Using DENSE_RANK()  -- DENSE_RANK is used in SQL to assign a consecutive rank to rows within a result set, where tied values 
+receive the same rank, and no ranks are skipped in the sequence. This contrasts with the RANK() function, which leaves gaps after ties.
+
+SELECT name, salary , DENSE_RANK() OVER (ORDER BY salary DESC  ) AS rankno FROM emp
+
+
+
