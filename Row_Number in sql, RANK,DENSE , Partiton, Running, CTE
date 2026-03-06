@@ -1,0 +1,42 @@
+SELECT name, salary ,
+ROW_NUMBER() OVER (ORDER BY salary DESC ) AS row_num 
+FROM emp
+
+//RANK()
+
+SELECT name, salary ,
+RANK() OVER (OVER BY salary DESC )
+FROM emp
+
+// DENSE_RANK()
+
+SELECT name, salary ,
+DENSE_RANK() OVER (ORDER BY salary DESC)
+FROM emp
+
+// Partition BY
+
+SELECT name, salary , 
+ RANK() OVER (PARTITION BY dept ORDER BY salary DESC )
+
+// Running Total 
+
+SELECT id , salary ,
+SUM(salary) OVER (OVER BY id)
+FROM emp
+
+// CTE 
+
+WITH emp_cte AS (
+  SELECT name, salary 
+  FROM emp
+  WHERE salary > 50000
+  SELECT * FROM emp_cte ;
+
+
+// INNER JOIN
+
+  SELECT e.name, d.dept_name
+  FORM emp e
+  JOIN department d 
+  ON e.dept_id = d.id;
