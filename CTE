@@ -1,0 +1,11 @@
+// CTE - common table exp
+
+WITH emp_cte AS (
+SELECT name, salary 
+FROM emp 
+WHERE salary > 50000
+SELECT * FROM emp_cte ;
+
+
+>>> it makes complex queries readable
+>>> used for temporary result sets 
